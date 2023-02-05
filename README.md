@@ -18,7 +18,7 @@ If you have any questions or suggestions, feel free to open an issue or pull req
 ## Features:
 - Set your own custom work and break lengths
 - Get notified when the timer is finished
-- Keep track of how many Pomodoros you've completed
+- Read tips in pause mode
 
 ## How to Use:
 1. Set the desired length of your time for the timer in the Settings menu.
