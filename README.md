@@ -2,10 +2,12 @@
 
 [English](./README.md) | [Русский](./README.ru.md)
 
+### Watch demo:  [click here](https://kicq.github.io/pomodoro-timer/)
+
 
 This is a simple Pomodoro Timer made using VueJS Composition API. It is designed to help you stay productive and focused while working.
 
-<h3 align="center">Preview</h3>
+### Preview
 
 ![](./src/assets//demo.gif)
 
