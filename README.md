@@ -1,4 +1,5 @@
 # Pomodoro Timer
+![views](https://shields-io-visitor-counter.herokuapp.com/badge?page=kicq/pomodoro-timer)
 
 [English](./README.md) | [Русский](./README.ru.md)
 
