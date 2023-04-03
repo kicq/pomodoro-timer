@@ -15,7 +15,10 @@ class Timer {
 
   isBreakTime: boolean = false
 
-  currentCounter: Ref<number> = ref(this.options.workTime)
+  endDate: Ref<number> = ref(0)
+
+  /** at seconds */
+  timeLeft: Ref<number> = ref(this.options.workTime)
 
   private _interval: number | undefined = undefined
   private _timeout: number | undefined = undefined
@@ -27,12 +30,13 @@ class Timer {
     this._timeout = setTimeout(() => {
       
       this.state.value = 'running'
+      this.endDate.value = getEndDate(this.options.workTime)
       this._interval = setInterval(() => {
-        if(this.currentCounter.value <= 0) {
+        if(this.timeLeft.value <= 0) {
           this.isBreakTime = !this.isBreakTime
-          this.isBreakTime ? this.currentCounter.value = this.options.breakTime : this.currentCounter.value = this.options.workTime
-        } else if(this.currentCounter.value === 4) audio.play()
-        this.currentCounter.value--
+          this.endDate.value = getEndDate(this.isBreakTime ? this.options.breakTime: this.options.workTime)
+        } else if(this.timeLeft.value === 4) audio.play()
+        this.timeLeft.value = Math.round((this.endDate.value - Date.now()) / 1000)
       }, 1000)
     }, 3000)
   }
@@ -45,7 +49,8 @@ class Timer {
     this.state.value = 'stopping'
     this._clear()
     this.isBreakTime = false
-    this.currentCounter.value = this.options.workTime
+    this.endDate.value = 0
+    this.timeLeft.value = this.options.workTime
   }
   private _clear(){
     clearInterval(this._interval)
@@ -56,3 +61,8 @@ class Timer {
 }
 
 export default new Timer
+
+
+function getEndDate(seconds: number) {
+  return Date.now() + seconds * 1000
+}

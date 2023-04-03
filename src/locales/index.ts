@@ -26,14 +26,13 @@ class Locale {
 
   get defaultLang (): keyof typeof this.list {
     const lang = window.navigator.language.slice(0, 2)
-    return Object.keys(this.list).includes(lang) ? lang as keyof typeof this.list: 'en'
+    return Object.keys(this.list).includes(lang) ? lang as keyof typeof this.list : 'en'
   }
 
   locales = computed(() => this.list[this._lang.value])
 
   setLocale(name: 'en' | 'ru'){
     this._lang.value = name
-    console.log('lang', this._lang.value)
   }
 }
 

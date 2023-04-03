@@ -5,7 +5,7 @@
         <span :class="{active: loc.lang === 'en'}" @click="loc.setLocale('en')">English</span>
         <span :class="{active: loc.lang === 'ru'}" @click="loc.setLocale('ru')">Русский</span>
       </section>
-      <Card :value="value" :seconds="Timer.currentCounter.value" :isBreakTime="Timer.isBreakTime" :state="Timer.state.value" />
+      <Card :value="value" :seconds="Timer.timeLeft.value" :isBreakTime="Timer.isBreakTime" :state="Timer.state.value" />
       <div class="tag-list">
         <TagComponent v-for="(item, index) of intervals" @click="updateOptions(index)" :key="index">
           {{ item[0] }}/{{ item[1] }}
@@ -50,7 +50,7 @@ function updateOptions(index: number) {
 
 const value = computed(() => {
   const max = Timer.isBreakTime ? Timer.options.breakTime : Timer.options.workTime
-  const current = Timer.currentCounter.value
+  const current = Timer.timeLeft.value
   return 1 - Math.floor((current/max) * 100) / 100
 })
 
